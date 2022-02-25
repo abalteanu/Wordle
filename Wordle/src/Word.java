@@ -98,7 +98,7 @@ public class Word {
 	 */
 	public Word(Letter[] letters) {
 		
-		firstLetter = new LinearNode<Letter>();
+		this.firstLetter = new LinearNode<Letter>();
 		LinearNode<Letter> curr = firstLetter;
 		
 		for(int i=0; i<letters.length; i++) {
