@@ -80,7 +80,6 @@ public class Word {
 					currOtherTemp = currOtherTemp.getNext();
 				}
 			}
-			
 			// moving to the next node
 			curr = curr.getNext();
 			pos++;
@@ -98,7 +97,7 @@ public class Word {
 	 */
 	public Word(Letter[] letters) {
 		
-		this.firstLetter = new LinearNode<Letter>();
+		firstLetter = new LinearNode<Letter>();
 		LinearNode<Letter> curr = firstLetter;
 		
 		for(int i=0; i<letters.length; i++) {

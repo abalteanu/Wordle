@@ -58,11 +58,26 @@ public class TestWordLL {
 
 		// ********** ExtendedLetter equals
 		test(10,"ExtendedLetter equals", el1.equals(el1) && !el1.equals(el2) && !el3.equals(el2));
+		//System.out.println(el3.related);	//comes out as true
 		el1.setCorrect();
 		el2.setUnused();
 		el3.setUnused();
 
 		// ********** ExtendedLetter toString
+//		System.out.println(el1.decorator());
+//		System.out.println(el2.decorator());
+//		System.out.println(el3.decorator());
+//		System.out.println(el1.decorator() + el2.decorator() + el3.decorator());
+
+		//problem here: the el3 does not appear with . it appears with -, meaning the program determines it to be just unused not unused and related...
+		//but how is it related to that equals thing, how and when is el3 determined to be related? line 60?
+//		System.out.println(el3.toString()); // this is correct... returns ".:(."
+		
+		
+		///HERE IS ERROR
+		// line below prints !c!-c-.:(. bad
+//		System.out.println(el1.toString()+el2.toString()+el3.toString());
+		
 		test(11,"ExtendedLetter toString", (el1.toString()+el2.toString()+el3.toString()).equals("!@!-:)-.:(."));
 		String[][] stArr={{"JD","AD","9H","10S"},
 			{"JC","9H","KH","AS"},
@@ -92,6 +107,8 @@ public class TestWordLL {
 		wll2.toString().contains("Word: -10C- +JC+ +9D+ +KH+ ") &&
 		wll2.toString().contains("Word: !JC! .9H. !KH! -AS- ") &&
 		wll2.toString().contains("Word: .JD. -AD- .9H. -10S- ") );
+		
+		
 		System.out.println("Your code scored: " + passed + " / " + tested);
 		//--------------------
 	}
