@@ -27,23 +27,6 @@ public class WordLL {
 		this.history.setNext(newNode);	// setting the head's next node to the new node
 	}
 	
-	/**
-	 * Helper method used during testing that adds a guess to the back of the history of guesses list
-	 * @param word the guess to be added to the list
-	 */
-	private void appendHistory(Word word) {
-		if(this.history.getNext() == null) {
-			// if the end of the list is reached, append the new node to the end of the list
-			this.history.setNext(new LinearNode<Word>(word));
-		}
-		else {
-			// if the end of the list is not there yet, iterate throuh the nodes of the list until it is reached
-			while(this.history.getNext() != null) {
-				this.history = history.getNext();
-			}
-			this.history.setNext(new LinearNode<Word>(word)); 
-		}
-	}
 	
 	
 	/// PUBLIC METHODS

@@ -1,7 +1,7 @@
 
 /**
  * Extended Letter class that extends the Letter class (meaning it is a subclass of Letter)
- * This class uses the functionality of the Letter class while also 
+ * This class uses the functionality of the Letter class while also adding other features such as classifying letters into families
  * @author Ana Balteanu
  */
 public class ExtendedLetter extends Letter {
@@ -57,15 +57,12 @@ public class ExtendedLetter extends Letter {
 		if(other instanceof ExtendedLetter) {
 			
 			// checking if the type of other is of ExtendedLetter type.
-			if((((ExtendedLetter)other).family) == this.family){
-				
+			if(this.family == ((ExtendedLetter)other).family) {
 				this.related = true; 	// if they are part of the same family
-				
-				if(this.content == ((ExtendedLetter)other).content) {
-					// comparing letter attributes of both objects
-					return true;
-				}
-				else {return false;}
+			}
+			if(this.content.equals(((ExtendedLetter)other).content)) {
+				// comparing letter attributes of both objects
+				return true;
 			}
 			else {return false;}
 		}
@@ -79,7 +76,7 @@ public class ExtendedLetter extends Letter {
 	 */
 	@Override 
 	public String toString() {
-		if(this.isUnused() && this.related) {
+		if((this.isUnused()) && (this.related == true)) {
 			// if letter is unused and related, surround by periods
 			return "." + this.content + ".";
 		} 

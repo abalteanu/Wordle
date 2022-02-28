@@ -78,9 +78,10 @@ public class WordLLExamples {
 	public static void main(String[] args) {
 		scan = new Scanner(System.in, "UTF-8");
 
-		//readMysteryWords("words");
-		//playEnglish();
+//		readMysteryWords("words");
+//		playEnglish();
 		playCards();
+//		
 		System.out.println("end of testing.");
 	}
 
@@ -105,6 +106,8 @@ public class WordLLExamples {
 				wordStr = scan.next().toUpperCase();
 			}
 		}
+		System.out.println(randomWord);
+
 	}
 
 	/* Play WordLL with Euchre Cards rather than using the implicit patterns of language this game relies on
@@ -119,8 +122,11 @@ public class WordLLExamples {
 		// --------------------
 		Word word = null;
 
+		System.out.println(mystery.toString());
+
 		System.out.print(message);
 		String wordStr = scan.next().toUpperCase();
+
 		while (!wordStr.equals("XX")) {
 			try {
 				if (wordStr.charAt(0) == 'R')  
@@ -151,5 +157,6 @@ public class WordLLExamples {
 				wordStr = "XX";
 			}
 		}
+		System.out.println(mystery.toString());
 	}
 }
