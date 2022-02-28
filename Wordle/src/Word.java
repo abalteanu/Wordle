@@ -6,12 +6,15 @@
 
 public class Word {
 	
+	/// PRIVATE VARIABLES
+
 	/**
 	 * Instance variable: reference to the first node in the linked list of Letters
 	 */
 	private LinearNode<Letter> firstLetter; // letters are stored in a linked list formed by objects of the class LinearNode, where each node is an obj of class Letter
 
-		
+	/// PRIVATE METHODS
+
 	/**
 	 * Helper method that will compare this word to another word by iterating through linked list of letter\s
 	 * @param otherWord paramater to be compared to this word
@@ -39,7 +42,7 @@ public class Word {
 	 * This method will adjust each letter based on the Letter class's attributes USED, UNUSED, and CORRECT.
 	 * @param checkWord is the mystery word
 	 */
-	private void checkLetters(Word checkWord) {
+	private void labelLetters(Word checkWord) {
 		LinearNode<Letter> curr = this.firstLetter;
 		LinearNode<Letter> currOther = checkWord.firstLetter;
 		
@@ -90,7 +93,8 @@ public class Word {
 		}
 	}
 	
-	
+	/// PUBLIC METHODS
+
 	/**
 	 * Constructor which initializes the Word object. 
 	 * @param letters is an array of letters that will be transformed into a linked structure in the method
@@ -118,8 +122,9 @@ public class Word {
 	public String toString() {
 		String word = "";
 
-		LinearNode<Letter> curr = firstLetter;
+		LinearNode<Letter> curr = firstLetter;	// setting the current node to the first letter in order to iterate through the letters
 		while(curr.getNext() != null) {
+			// adding each letter to the string of the word
 			word += curr.getElement().toString();
 			word += " ";
 			curr = curr.getNext();
@@ -127,56 +132,21 @@ public class Word {
 		return "Word: " + word;
 	}
 	
+	/**
+	 * Function that labels the letters in the guess word with respect to its accuracy against the mystery word
+	 * @param mystery is the mystery word with which the guess word is compared
+	 * @return true or false based on if the guess was exactly correct compared to the mystery word, or if it is incorrect
+	 */
 	public boolean labelWord(Word mystery) {
-
+		
+		this.labelLetters(mystery);	//labeling the letters
+		
 		if(this.equals(mystery)) {
-			this.checkLetters(mystery);
+			// if the words are equal, still label the letters but return true
 			return true;
 		} else {
-			//check letters
-			this.checkLetters(mystery);
+			// if the guess is not equal to the mystery word, return false and label the letters
 			return false;
-		}
-	}
-	
-	public static void main(String[] args) {
-//		Word word1 = new Word(Letter.fromString("OBJECT"));
-//		Word word3 = new Word(Letter.fromString("OJBA"));
-//		//Word word2 = new Word(Letter.fromString("CLASS"));
-//		//word2.labelWord(word1);
-//
-//		System.out.println(word1.toString());
-//
-//		System.out.println((word1).toString().equals("Word:  O   B   J   E   C   T  "));
-//		
-//		
-//		System.out.println(word1.labelWord(word3));
-//
-//		System.out.println(word1.toString());
-//
-//		//System.out.println(word1.equals(word2));
-		
-		String[][] stArr={{"JD","AD","9H","10S"},
-			{"JC","9H","KH","AS"},
-			{"10C","JC","9D","KH"},
-			{"JC","10D","9H","QH"},
-			{"10C","AD","9H","KH"},
-			{"10C","QC","QD","10H"},
-			{"JC","9D","KH","9S"}};
-		int[][] intArr = {{2,5,0,1},
-			{2,0,4,5},
-			{1,2,0,4},
-			{2,1,0,3},
-			{1,5,0,4},
-			{1,3,3,1},
-			{2,0,4,0}};
-		
-		//fromstrings makes an array of letters
-		Word mystery = new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1]));
-		//WordLL wll2 = new WordLL(new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1])));
-		for (int i = 0; i < stArr.length; i++) {
-			Word current = new Word (ExtendedLetter.fromStrings(stArr[i],intArr[i]));
-			current.labelWord(mystery);
 		}
 	}
 	

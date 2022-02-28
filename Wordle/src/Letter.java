@@ -7,14 +7,16 @@
 
 public class Letter {
 	
-	
+	/// PRIVATE VARIABLES
+
 	private char letter;
 	
 	private int label;
 	
 	private final int UNSET = 0, UNUSED = 1, USED = 2, CORRECT = 3;	// WHAT ARE THE VALUES OF THESE SUPPOSED TO BE 
 	
-	
+	/// PUBLIC METHODS
+
 	/**
 	 * Constructor that sets the letter to the paramater's character and the letter's label to UNSET
 	 * @param c
@@ -62,23 +64,39 @@ public class Letter {
 		}
 	}
 	
+	/**
+	 * Method that returns the string representation of the letter, including its labels
+	 * @return string representation of letter
+	 */
 	public String toString() {
-		// overridden method... does this mean i have to use @override?????????????????????
 		return this.decorator() + this.letter + this.decorator();
 	}
 	
+	/**
+	 * sets the label of the letter to unused, with the value 1
+	 */
 	public void setUnused() {
 		this.label = this.UNUSED;
 	}
 	
+	/**
+	 * sets the label of the letter to used, with the value 2
+	 */
 	public void setUsed() {
 		this.label = this.USED;
 	}
 	
+	/**
+	 * sets the label of the letter to unused, with the value 3
+	 */
 	public void setCorrect() {
 		this.label = this.CORRECT;
 	}
 	
+	/**
+	 * Checks if the letter is set to unused or not 
+	 * @return true or false depending on if the letter is used or not
+	 */
 	public boolean isUnused() {
 		if (this.label == this.UNUSED) {
 			return true;
@@ -86,10 +104,17 @@ public class Letter {
 		else {return false;}
 	}
 	
+	
+	/**
+	 * Function that makes an array of characters from a string
+	 * @param s is the string from which the function creates the array of chars
+	 * @return the char array
+	 */
 	public static Letter[] fromString(String s) {
 		
 		Letter[] letterArr = new Letter[s.length()];
 		for (int i = 0; i < s.length(); i++){
+			// iterating through string
 		    char c = s.charAt(i);        
 		    //Process char
 		    letterArr[i] = new Letter(c);
@@ -97,9 +122,4 @@ public class Letter {
 		return letterArr;
 	}
 	
-	public static void main(String[] args) {
-		Letter letter = new Letter('a');
-		letter.setUsed();
-		System.out.println(letter.toString());
-	}
 }

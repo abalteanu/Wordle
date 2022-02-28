@@ -9,6 +9,10 @@ public class WordLL {
 	/// PRIVATE VARIABLES
 	
 	private Word mysteryWord;
+	
+	/**
+	 * A history of guesses
+	 */
 	private LinearNode<Word> history;
 	
 	/// PRIVATE METHODS
@@ -29,14 +33,15 @@ public class WordLL {
 	 */
 	private void appendHistory(Word word) {
 		if(this.history.getNext() == null) {
+			// if the end of the list is reached, append the new node to the end of the list
 			this.history.setNext(new LinearNode<Word>(word));
 		}
 		else {
+			// if the end of the list is not there yet, iterate throuh the nodes of the list until it is reached
 			while(this.history.getNext() != null) {
 				this.history = history.getNext();
 			}
-			this.history.setNext(new LinearNode<Word>(word)); /// test hereeeeeeeeeee
-
+			this.history.setNext(new LinearNode<Word>(word)); 
 		}
 	}
 	
@@ -56,8 +61,8 @@ public class WordLL {
 	/**
 	 * Method that compares a guess word to the mystery word, adjusts the letter labels accordingly,
 	 * and prepends the guess to the front of the history list
-	 * @param guess
-	 * @return
+	 * @param guess the guess word
+	 * @return the result of guess.labelWord, which will say if the guess word is identical to the mystery word or not
 	 */
 	public boolean tryWord(Word guess) {
 		// append guess into history
@@ -77,6 +82,7 @@ public class WordLL {
 		
 		LinearNode<Word> curr = history;
 		while(curr.getNext() != null) {
+			// adding each guess to the string of guesses
 			histList += curr.getNext().getElement().toString();
 			histList += "\n";
 			curr = curr.getNext();
@@ -85,20 +91,4 @@ public class WordLL {
 		return histList;
 	}
 	
-	public static void main(String[] args) {
-		Word mystery = new Word(Letter.fromString("OBJACT"));
-		Word word2 = new Word(Letter.fromString("OJBA"));
-		WordLL wordle = new WordLL(mystery);
-		wordle.prependHistory(word2);
-		wordle.prependHistory(mystery);
-		//System.out.println(wordle.history.getElement());
-		String words = wordle.history.getNext().getElement().toString();
-		//System.out.println(wordle.history.getElement().toString());
-		//System.out.println(words);
-		
-		wordle.tryWord(word2);
-		//System.out.println(word2.toString());
-		
-		System.out.println(wordle.toString());
-	}
 }

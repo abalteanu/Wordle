@@ -5,11 +5,24 @@
  * @author Ana Balteanu
  */
 public class ExtendedLetter extends Letter {
+
+
+	/// PRIVATE VARIABLES
+	
+	/**
+	 * String content of the letter
+	 */
 	private String content;
+	/**
+	 * number indicating the family of the letter
+	 */
 	private int family;	// +ve number that that assigns this letter to a family, of which other ExtendedLetter objects with the same family value are a part of
 	private boolean related;
 	private final int SINGLETON = -1;
 	
+	
+	/// PUBLIC METHODS
+
 	/**
 	 * Constructor which calls the superconstructor from the letter class and initializes all
 	 * the variables: content to s, related to false, and family to SINGLETON
@@ -28,8 +41,8 @@ public class ExtendedLetter extends Letter {
 	 * @param fam an integer which represents the family of the ExtendedLetter
 	 */
 	public ExtendedLetter(String s, int fam) {
-		super('c');
-		this.content = s;
+		super('c');	// assigning a random char to initialize the letter. this will not actually be the content of the letter. 
+		this.content = s; // determines the content of the letter
 		this.related = false;
 		this.family = fam;
 	}
@@ -59,20 +72,35 @@ public class ExtendedLetter extends Letter {
 		else {return false;}
 	}
 	
+	/**
+	 * Gives a string representation of this extended letter object by using the decorator function.
+	 * If this letter is unused and related, letter will be surrounded by periods
+	 * @return the string representation of the labeled letter
+	 */
 	@Override 
 	public String toString() {
 		if(this.isUnused() && this.related) {
+			// if letter is unused and related, surround by periods
 			return "." + this.content + ".";
 		} 
 		else {
+			// else surround by whatever the letter class determines it to be
 			return this.decorator() + this.content + this.decorator();
 		}
 	}
 	
+	/**
+	 * Function that creates an array of letters of type Letter
+	 * @param content is an array that determines the size of the array
+	 * @param codes determines the family of the letters in the array
+	 * @return the letter array depending on if codes is null or not
+	 */
 	public static Letter[] fromStrings(String[] content, int[] codes) {
+		// creating an array for the letters of the right size
 		Letter[] letters = new Letter[content.length];
 		
 		for(int i = 0; i<content.length; i++) {
+			// iterating through the content
 			if(codes == null) {
 				letters[i] = new ExtendedLetter(content[i]);
 			} else {
@@ -82,14 +110,4 @@ public class ExtendedLetter extends Letter {
 		return letters;
 	}
 	
-
-	
-	public static void main(String[] args) {
-		ExtendedLetter c1 = new ExtendedLetter("c");
-		ExtendedLetter c2 = new ExtendedLetter("d", 9);
-		
-		//Equals
-		System.out.println(c1.equals(c2));
-		System.out.println(c1.related);
-	}
 }
