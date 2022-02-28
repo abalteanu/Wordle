@@ -71,14 +71,18 @@ public class ExtendedLetter extends Letter {
 	
 	public static Letter[] fromStrings(String[] content, int[] codes) {
 		Letter[] letters = new Letter[content.length];
-
-		if(codes == null) {
-			letters[content.length - 1] = new ExtendedLetter(content[content.length - 1]);
-		} else {
-			letters[content.length - 1] = new ExtendedLetter(content[content.length - 1], codes[content.length - 1]);
+		
+		for(int i = 0; i<content.length; i++) {
+			if(codes == null) {
+				letters[i] = new ExtendedLetter(content[i]);
+			} else {
+				letters[i] = new ExtendedLetter(content[i], codes[i]);
+			}
 		}
 		return letters;
 	}
+	
+
 	
 	public static void main(String[] args) {
 		ExtendedLetter c1 = new ExtendedLetter("c");

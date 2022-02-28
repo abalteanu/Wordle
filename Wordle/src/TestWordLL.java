@@ -95,7 +95,6 @@ public class TestWordLL {
 			{2,0,4,0}};		
 
 		WordLL wll2 = new WordLL(new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1])));
-		System.out.println(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1]));
 		for (int i = 0; i < stArr.length; i++) {
 			wll2.tryWord(new Word(ExtendedLetter.fromStrings(stArr[i],intArr[i])));
 		}

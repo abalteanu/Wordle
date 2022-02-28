@@ -169,8 +169,9 @@ public class Word {
 			{2,1,0,3},
 			{1,5,0,4},
 			{1,3,3,1},
-			{2,0,4,0}};		
+			{2,0,4,0}};
 		
+		//fromstrings makes an array of letters
 		Word mystery = new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1]));
 		//WordLL wll2 = new WordLL(new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1])));
 		for (int i = 0; i < stArr.length; i++) {
