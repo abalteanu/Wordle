@@ -97,13 +97,12 @@ public class Word {
 	 */
 	public Word(Letter[] letters) {
 		
-		firstLetter = new LinearNode<Letter>();
+		this.firstLetter = new LinearNode<Letter>();
 		LinearNode<Letter> curr = firstLetter;
 		LinearNode<Letter> next = new LinearNode<Letter>();	//  the new next node (after the current letter)
 
 		for(int i=0; i<letters.length; i++) {
 			curr.setElement(letters[i]);	// putting that element into the node
-
 			next = new LinearNode<Letter>();	//  the new next node (after the current letter)
 			curr.setNext(next);	// setting the current's reference to the next node's address
 			curr = next;	// shifting to the next item in the linear node
@@ -141,21 +140,43 @@ public class Word {
 	}
 	
 	public static void main(String[] args) {
-		Word word1 = new Word(Letter.fromString("OBJECT"));
-		Word word3 = new Word(Letter.fromString("OJBA"));
-		//Word word2 = new Word(Letter.fromString("CLASS"));
-		//word2.labelWord(word1);
-
-		System.out.println(word1.toString());
-
-		System.out.println((word1).toString().equals("Word:  O   B   J   E   C   T  "));
+//		Word word1 = new Word(Letter.fromString("OBJECT"));
+//		Word word3 = new Word(Letter.fromString("OJBA"));
+//		//Word word2 = new Word(Letter.fromString("CLASS"));
+//		//word2.labelWord(word1);
+//
+//		System.out.println(word1.toString());
+//
+//		System.out.println((word1).toString().equals("Word:  O   B   J   E   C   T  "));
+//		
+//		
+//		System.out.println(word1.labelWord(word3));
+//
+//		System.out.println(word1.toString());
+//
+//		//System.out.println(word1.equals(word2));
 		
+		String[][] stArr={{"JD","AD","9H","10S"},
+			{"JC","9H","KH","AS"},
+			{"10C","JC","9D","KH"},
+			{"JC","10D","9H","QH"},
+			{"10C","AD","9H","KH"},
+			{"10C","QC","QD","10H"},
+			{"JC","9D","KH","9S"}};
+		int[][] intArr = {{2,5,0,1},
+			{2,0,4,5},
+			{1,2,0,4},
+			{2,1,0,3},
+			{1,5,0,4},
+			{1,3,3,1},
+			{2,0,4,0}};		
 		
-		System.out.println(word1.labelWord(word3));
-
-		System.out.println(word1.toString());
-
-		//System.out.println(word1.equals(word2));
+		Word mystery = new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1]));
+		//WordLL wll2 = new WordLL(new Word(ExtendedLetter.fromStrings(stArr[stArr.length-1],intArr[stArr.length-1])));
+		for (int i = 0; i < stArr.length; i++) {
+			Word current = new Word (ExtendedLetter.fromStrings(stArr[i],intArr[i]));
+			current.labelWord(mystery);
+		}
 	}
 	
 }
