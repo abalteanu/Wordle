@@ -99,15 +99,19 @@ public class Word {
 		
 		firstLetter = new LinearNode<Letter>();
 		LinearNode<Letter> curr = firstLetter;
-		
+		LinearNode<Letter> next = new LinearNode<Letter>();	//  the new next node (after the current letter)
+
 		for(int i=0; i<letters.length; i++) {
 			curr.setElement(letters[i]);	// putting that element into the node
-			LinearNode<Letter> next = new LinearNode<Letter>();	//  the new next node (after the current letter)
+
+			next = new LinearNode<Letter>();	//  the new next node (after the current letter)
 			curr.setNext(next);	// setting the current's reference to the next node's address
 			curr = next;	// shifting to the next item in the linear node
 		}
 		curr.setNext(null);	// setting the curr node's next reference to null, indicating the end of the list
 	}
+	
+	
 	/**
 	 * toString method to print to the user
 	 * @return string with the entire word and its decorator around each letter
@@ -127,6 +131,7 @@ public class Word {
 	public boolean labelWord(Word mystery) {
 
 		if(this.equals(mystery)) {
+			this.checkLetters(mystery);
 			return true;
 		} else {
 			//check letters
@@ -136,12 +141,20 @@ public class Word {
 	}
 	
 	public static void main(String[] args) {
-		Word word1 = new Word(Letter.fromString("OBJACT"));
-		Word word2 = new Word(Letter.fromString("OJBA"));
+		Word word1 = new Word(Letter.fromString("OBJECT"));
+		Word word3 = new Word(Letter.fromString("OJBA"));
+		//Word word2 = new Word(Letter.fromString("CLASS"));
+		//word2.labelWord(word1);
 
-		System.out.println(word1.labelWord(word2));
-		
 		System.out.println(word1.toString());
+
+		System.out.println((word1).toString().equals("Word:  O   B   J   E   C   T  "));
+		
+		
+		System.out.println(word1.labelWord(word3));
+
+		System.out.println(word1.toString());
+
 		//System.out.println(word1.equals(word2));
 	}
 	
